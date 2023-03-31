@@ -1,0 +1,53 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: calculate bmi
+  steps:
+  - intent: provide_bmi
+  - action: bmi_form
+
+# - story: calculate calorie
+#   steps:
+#   - intent: provide_calories
+#   - action: utter_ask_height
+#   - intent: provide_height
+#   - action: utter_ask_weight
+#   - intent: provide_weight
+#   - action: utter_ask_age
+#   - intent: provide_age
+#   - action: utter_ask_activity_level
+#   - intent: provide_activity_level
+#   - action: bmi_form
+#   - action: calorie_form
+
+
+
+
