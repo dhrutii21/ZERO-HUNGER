@@ -1,0 +1,123 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - provide_bmi
+  - provide_age
+  - provide_height
+  - provide_weight
+  - provide_activity_level
+  - provide_calories
+
+entities:
+  - weight
+  - height
+  - gender
+  - age 
+  - activity_level
+
+actions:
+  - bmi_form 
+  - calorie_form
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_weight:
+    - text: "What is your weight in kg?"
+
+  utter_ask_height:
+    - text: "What is your height in meters?"
+
+  utter_ask_age:
+    - text: "What is your age ?"
+
+  utter_ask_activity_level:
+    - text: "Whats your activity level ?"
+
+  utter_bmi_result:
+    - text: "Your BMI is {bmi:.1f}."
+
+slots:
+  height:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: height
+    influence_conversation: true
+
+  age:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: age
+    influence_conversation: true
+
+  weight:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: weight
+    influence_conversation: true
+
+  gender:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: gender
+    influence_conversation: true
+
+  activity_level:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: activity_level
+    influence_conversation: true
+
+forms:
+  bmi_form:
+    required_slots:
+      - height
+        # - type:from_entity
+        #   entity:height
+        #   intent:provide_bmi
+      - weight
+        # - type:from_entity
+        #   entity:weight
+        #   intent:provide_bmi
+  
+  calorie_form:
+      required_slots:
+        - height
+        - weight
+        - gender 
+        - age 
+        - activity_level
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
